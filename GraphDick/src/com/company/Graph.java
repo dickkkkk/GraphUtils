@@ -4,9 +4,16 @@ import java.util.*;
 
 public class Graph {
 
-    private final int maxVershin = getRandomNumber(8, 12);
-    private int[][] arr = new int[maxVershin][maxVershin];
-    private final String vidGraph = getRandomVid();
+    private final int maxVershin;
+    private int[][] arr;
+    private final String vidGraph;
+
+    Graph(){
+        maxVershin = getRandomNumber(8, 12);
+        arr = new int[maxVershin][maxVershin];
+        vidGraph = getRandomVid();
+        createRandomGraph();
+    }
 
     private int getRandomNumber(int min, int max) {
         Random random = new Random();
@@ -18,8 +25,8 @@ public class Graph {
         return str[getRandomNumber(0, 2)];
     }
 
-    public void addEdge(int first, int second) {
-        if (vidGraph == "orGraph") {
+    private void addEdge(int first, int second) {
+        if (vidGraph.equals("orGraph")) {
             arr[first][second] = 1;
         } else {
             arr[first][second] = 1;
@@ -28,7 +35,7 @@ public class Graph {
     }
 
     public void printGraph() {
-        if (vidGraph == "orGraph") {
+        if (vidGraph.equals("orGraph")) {
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr[i].length; j++) {
                     if (arr[i][j] == 1) {
@@ -48,7 +55,7 @@ public class Graph {
 
     }
 
-    public void createRandomGraph() {
+    private void createRandomGraph() {
         for (int i = 0; i < maxVershin; i++) {
             addEdge(getRandomNumber(0, maxVershin), getRandomNumber(0, maxVershin));
         }
@@ -64,7 +71,7 @@ public class Graph {
                 int v = 0;
                 for (int i = 0; i < arr.length; i++) {
                     if (arr[j][i] == 1) {
-                        if (visited[i] != true) {
+                        if (!visited[i]) {
                             visited[i] = true;
                             v = i;
                             dfs.add(v);
@@ -88,10 +95,10 @@ public class Graph {
         class bfss {
             void bfsss(int j) {
                 for (int i = 0; i < arr.length; i++) {
-                    if (visited[j] == false) {
+                    if (!visited[j]) {
                         visited[j] = true;
                     }
-                    if (arr[j][i] == 1 && visited[i] == false) {
+                    if (arr[j][i] == 1 && !visited[i]) {
                         bfsQueue.add(i);
                     }
                 }
