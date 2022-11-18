@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         Graph gr = new Graph();
 
-        gr.createRandomGraph();
         /*gr.addEdge(1, 2);
         gr.addEdge(1, 3);
         gr.addEdge(2, 3);
@@ -18,6 +17,7 @@ public class Main {
         gr.addEdge(2, 4);
         gr.addEdge(3, 4);
         */
+
         gr.printGraph();
         System.out.println();
         System.out.println("Введите начальную вершину для обходов: ");
